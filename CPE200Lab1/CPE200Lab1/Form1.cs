@@ -23,65 +23,160 @@ namespace CPE200Lab1
 
         private void btnN_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            if (lblDisplay.Text == "0" || lblDisplay.Text == string.Format("{0:0}",num) || lblDisplay.Text == string.Format("{0:0}",result))
-            {
-                lblDisplay.Text = "";
+            if (lblDisplay.Text.Length <= 7) {
+                if (lblDisplay.Text == "0")
+                {
+                    lblDisplay.Text = ((Button)sender).Text;
+                }
+                else
+                {
+                    lblDisplay.Text = lblDisplay.Text + ((Button)sender).Text;
+                }
             }
-            if (lblDisplay.Text.Length <= 8)
-                lblDisplay.Text = lblDisplay.Text + btn.Text;
-            
 
         }
 
         private void btnPlus_Click(object sender, EventArgs e)
         {
-            num = double.Parse(lblDisplay.Text);
+            num = Convert.ToDouble(lblDisplay.Text);
             Operation = 1;
-            lblDisplay.Text = string.Format("{0:0}", num);
+            lblDisplay.Text = "0";
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
-            num = double.Parse(lblDisplay.Text);
+            num = Convert.ToDouble(lblDisplay.Text);
             Operation = 2;
-            lblDisplay.Text = string.Format("{0:0}", num);
+            lblDisplay.Text = "0";
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            num = double.Parse(lblDisplay.Text);
+            num = Convert.ToDouble(lblDisplay.Text);
             Operation = 3;
-            lblDisplay.Text = string.Format("{0:0}", num);
+            lblDisplay.Text = "0";
         }
 
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            num = double.Parse(lblDisplay.Text);
+            num = Convert.ToDouble(lblDisplay.Text);
             Operation = 4;
-            lblDisplay.Text = string.Format("{0:0}", num);
+            lblDisplay.Text = "0";
         }
 
         private void btnPercent_Click(object sender, EventArgs e)
         {
-            num2 = double.Parse(lblDisplay.Text);
-            num2 = num * num2 / 100;
-            lblDisplay.Text = string.Format("{0:0}", num2);
+            num2 = Convert.ToDouble(lblDisplay.Text);
+
+            if (Operation == 1)
+            {
+                result = num + num*(num2/100);
+                lblDisplay.Text = Convert.ToString(result);
+                num = result;
+            }
+            if (Operation == 2)
+            {
+                result = num - num * (num2 / 100);
+                lblDisplay.Text = Convert.ToString(result);
+                num = result;
+            }
+            if (Operation == 3)
+            {
+                result = num *( num * (num2 / 100));
+                lblDisplay.Text = Convert.ToString(result);
+                num = result;
+            }
+            if (Operation == 4)
+            {
+                if (num2 == 0)
+                {
+                    lblDisplay.Text = "ERROR";
+                }
+                else
+                {
+                    result = num / (num * (num2 / 100));
+                    lblDisplay.Text = Convert.ToString(result);
+                    num = result;
+                }
+
+            }
+            if(Operation == 0)
+            {
+                result = num2 / 100;
+                lblDisplay.Text = Convert.ToString(result);
+                num = result;
+            }
+            else
+            {
+                lblDisplay.Text = lblDisplay.Text;
+            }
+
+       }
+
+        private void btn0_Click(object sender, EventArgs e)
+        {
+            if (lblDisplay.Text != "0")
+            {
+                lblDisplay.Text = lblDisplay.Text + "0";
+            }
+            else
+            {
+                lblDisplay.Text = "0";
+            }
+        }
+
+        private void btnDot_Click(object sender, EventArgs e)
+        {
+            lblDisplay.Text = lblDisplay.Text + ".";
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            num2 = double.Parse(lblDisplay.Text);
-            result = 0;
-            lblDisplay.Text = string.Format("{0:0}", num2);
-            if (Operation == 1) result = num + num2;
-            else if (Operation == 2) result = num - num2;
-            else if (Operation == 3) result = num * num2;
-            else if (Operation == 4) result = num / num2;
+            num2 = Convert.ToDouble(lblDisplay.Text);
 
-            lblDisplay.Text = string.Format("{0:0}", result);
+            if (Operation == 1)
+            {
+                result = num + num2;
+                lblDisplay.Text = Convert.ToString(result);
+                num = result;
+            }
+            if (Operation == 2)
+            {
+                result = num - num2;
+                lblDisplay.Text = Convert.ToString(result);
+                num = result;
+            }
+            if (Operation == 3)
+            {
+                result = num * num2;
+                lblDisplay.Text = Convert.ToString(result);
+                num = result;
+            }
+            if (Operation == 4)
+            {
+                if (num2 == 0)
+                {
+                    lblDisplay.Text = "ERROR";
+                }
+                else
+                {
+                    result = num / num2;
+                    lblDisplay.Text = Convert.ToString(result);
+                    num = result;
+                }
+            }
+            if(lblDisplay.Text.Length > 8)
+                {
+                    lblDisplay.Text = "ERROR";
+                }
+            else
+            {
+                lblDisplay.Text = lblDisplay.Text;
+            }
+            
         }
 
+   
         private void btnClear_Click(object sender, EventArgs e)
         {
             lblDisplay.Text = "0";

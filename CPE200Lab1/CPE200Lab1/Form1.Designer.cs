@@ -203,6 +203,7 @@
             this.btnDot.TabIndex = 14;
             this.btnDot.Text = ".";
             this.btnDot.UseVisualStyleBackColor = true;
+            this.btnDot.Click += new System.EventHandler(this.btnDot_Click);
             // 
             // btn0
             // 
@@ -213,7 +214,7 @@
             this.btn0.TabIndex = 13;
             this.btn0.Text = "0";
             this.btn0.UseVisualStyleBackColor = true;
-            this.btn0.Click += new System.EventHandler(this.btnN_Click);
+            this.btn0.Click += new System.EventHandler(this.btn0_Click);
             // 
             // btnSign
             // 
